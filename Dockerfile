@@ -1,5 +1,5 @@
 ## build image
-FROM node:16.14.2-alpine
+FROM node:16.17-alpine
 
 WORKDIR /workspace
 COPY package.json /workspace/

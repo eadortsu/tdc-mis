@@ -17,7 +17,7 @@ export class TicketsService {
   ) {}
 
   create(createTicketDto: CreateTicketDto) {
-    return 'This action adds a new ticket';
+    return 'This action adds a new ticket.';
   }
 
   async findAll() {
