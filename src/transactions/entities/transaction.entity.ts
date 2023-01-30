@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -13,6 +14,7 @@ export class Transaction {
   id: number;
 
   @Column({ unique: true })
+  @Index()
   transaction_id: string;
 
   @Column({ nullable: true })

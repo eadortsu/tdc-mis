@@ -26,8 +26,13 @@ export class PlayersController {
   }
 
   @Get()
-  findAll() {
-    return this.playersService.findAll();
+  async findAll() {
+    return await this.playersService.findAll();
+  }
+
+  @Get('count')
+  async count() {
+    return await this.playersService.count();
   }
 
   @Get(':id')

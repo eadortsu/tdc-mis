@@ -20,8 +20,12 @@ export class TicketsService {
     return 'This action adds a new ticket';
   }
 
-  findAll() {
-    return `This action returns all tickets`;
+  async findAll() {
+    return await this.TicketRepository.find();
+  }
+
+  async count() {
+    return await this.TicketRepository.count();
   }
 
   findOne(id: number) {
@@ -61,17 +65,23 @@ export class TicketsService {
         });
         if (ticket) {
           // Update the existing ticket
-          ticket.playerMobile = row['PLAYER MOBILE'];
+          ticket.drawID = row['DRAW ID'];
+          ticket.drawName = row['DRAW NAME'];
+          ticket.drawDate = row['DRAW DATE'];
+          ticket.prizeCategory = row['PRIZE CATEGORY'];
           ticket.playerName = row['PLAYER NAME'];
-          ticket.created = row['CREATED'];
+          ticket.mobile = row['MOBILE'];
           await this.TicketRepository.save(ticket);
         } else {
           // Create a new ticket
           const newTicket = new WinningTicket();
-          newTicket.playerMobile = row['PLAYER MOBILE'];
+          newTicket.drawID = row['DRAW ID'];
+          newTicket.drawName = row['DRAW NAME'];
+          newTicket.drawDate = row['DRAW DATE'];
+          newTicket.prizeCategory = row['PRIZE CATEGORY'];
           newTicket.playerName = row['PLAYER NAME'];
+          newTicket.mobile = row['MOBILE'];
           newTicket.ticket = row['TICKET'];
-          newTicket.created = row['CREATED'];
 
           await this.TicketRepository.save(newTicket);
         }

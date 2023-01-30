@@ -26,8 +26,13 @@ export class TicketsController {
   }
 
   @Get()
-  findAll() {
-    return this.ticketsService.findAll();
+  async findAll() {
+    return await this.ticketsService.findAll();
+  }
+
+  @Get('count')
+  async count() {
+    return await this.ticketsService.count();
   }
 
   @Get(':id')

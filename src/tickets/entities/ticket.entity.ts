@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,6 +20,7 @@ export class Ticket {
   playerName: string;
 
   @Column({ unique: true })
+  @Index()
   ticket: string;
 
   @Column({ nullable: true })

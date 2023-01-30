@@ -23,8 +23,12 @@ export class PlayersService {
     return 'This action adds a new player';
   }
 
-  findAll() {
-    return `This action returns all players`;
+  async findAll() {
+    return await this.PlayerRepository.find();
+  }
+
+  async count() {
+    return await this.PlayerRepository.count();
   }
 
   findOne(id: number) {

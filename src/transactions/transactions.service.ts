@@ -20,8 +20,12 @@ export class TransactionsService {
     return 'This action adds a new transaction';
   }
 
-  findAll() {
-    return `This action returns all transactions`;
+  async findAll() {
+    return await this.TransactionRepository.find();
+  }
+
+  async count() {
+    return await this.TransactionRepository.count();
   }
 
   findOne(id: number) {
@@ -64,6 +68,9 @@ export class TransactionsService {
           transaction.mobile = row['MOBILE'];
           transaction.playerName = row['PLAYER NAME'];
           transaction.date = row['TRANSACTION DATE'];
+          transaction.network = row['NETWORK'];
+          transaction.number_of_tickets = row['NUMBER OF TICKETS'];
+          transaction.amount = row['AMOUNT'];
           await this.TransactionRepository.save(transaction);
         } else {
           // Create a new transaction
@@ -71,6 +78,9 @@ export class TransactionsService {
           newTransaction.mobile = row['MOBILE'];
           newTransaction.playerName = row['PLAYER NAME'];
           newTransaction.date = row['TRANSACTION DATE'];
+          newTransaction.network = row['NETWORK'];
+          newTransaction.number_of_tickets = row['NUMBER OF TICKETS'];
+          newTransaction.amount = row['AMOUNT'];
           newTransaction.transaction_id = row['TRANSACTION ID'];
 
           await this.TransactionRepository.save(newTransaction);

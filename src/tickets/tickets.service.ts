@@ -20,8 +20,12 @@ export class TicketsService {
     return 'This action adds a new ticket';
   }
 
-  findAll() {
-    return `This action returns all tickets`;
+  async findAll() {
+    return await this.TicketRepository.find();
+  }
+
+  async count() {
+    return await this.TicketRepository.count();
   }
 
   findOne(id: number) {

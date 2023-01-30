@@ -15,6 +15,7 @@ import { TicketsService } from './tickets.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { raw } from 'express';
 
 @Controller('winning_tickets')
 export class TicketsController {
@@ -26,8 +27,12 @@ export class TicketsController {
   }
 
   @Get()
-  findAll() {
-    return this.ticketsService.findAll();
+  async findAll() {
+    return await this.ticketsService.findAll();
+  }
+  @Get('count')
+  async count() {
+    return await this.ticketsService.count();
   }
 
   @Get(':id')

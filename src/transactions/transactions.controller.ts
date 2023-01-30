@@ -26,8 +26,13 @@ export class TransactionsController {
   }
 
   @Get()
-  findAll() {
-    return this.transactionsService.findAll();
+  async findAll() {
+    return await this.transactionsService.findAll();
+  }
+
+  @Get('count')
+  async count() {
+    return await this.transactionsService.count();
   }
 
   @Get(':id')
