@@ -1,10 +1,14 @@
-FROM node:16.17.0-alpine
+## build image
+FROM node:16.14.2-alpine
 
-WORKDIR /app
-
-COPY package.json yarn.lock ./
+WORKDIR /workspace
+COPY package.json /workspace/
+COPY yarn.lock /workspace/
 RUN yarn install
-
-COPY . /app
-
+COPY . .
 RUN yarn build
+
+EXPOSE 3000
+ENV NODE_ENV production
+# CMD ["node", "dist/main"]
+CMD ["yarn", "run", "start:prod"]
